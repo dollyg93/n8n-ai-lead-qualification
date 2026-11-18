@@ -2,8 +2,8 @@
 // functions that test.js exercises.
 const fs = require('fs');
 const path = require('path');
-const { normalizeLead } = require('./src/normalizeLead');
-const { parseQualification } = require('./src/parseQualification');
+const { normalizeLead } = require('./normalizeLead');
+const { parseQualification } = require('./parseQualification');
 
 const SYSTEM_PROMPT = [
   'You qualify inbound sales leads for a small software/automation agency.',
@@ -132,6 +132,6 @@ const workflow = {
   pinData: {},
 };
 
-const out = path.join(__dirname, 'workflows', 'ai-lead-qualification.json');
+const out = path.join(__dirname, 'ai-lead-qualification.json');
 fs.writeFileSync(out, JSON.stringify(workflow, null, 2) + '\n');
 console.log(`Wrote ${path.relative(__dirname, out)}`);

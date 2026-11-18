@@ -4,7 +4,7 @@ An importable [n8n](https://n8n.io) workflow that takes a lead from your website
 OpenAI score and summarize it, pings your sales channel on Slack when it's a hot lead, and
 replies to the form with the result.
 
-![Workflow diagram](docs/workflow-diagram.png)
+![Workflow diagram](workflow-diagram.png)
 
 ## What it does
 
@@ -20,7 +20,7 @@ replies to the form with the result.
 
 ## Import it
 
-1. In n8n: **Workflows → Import from file** → `workflows/ai-lead-qualification.json`
+1. In n8n: **Workflows → Import from file** → `ai-lead-qualification.json`
 2. Open **AI qualify lead** and select your OpenAI credential
 3. Open **Alert sales on Slack** and paste your Slack incoming-webhook URL
 4. Activate, then send a test lead:
@@ -33,7 +33,7 @@ curl -X POST https://<your-n8n>/webhook/lead-intake \
 
 ## How the code is organised
 
-The Code-node logic lives in `src/` as plain JavaScript so it can be unit tested.
+The Code-node logic lives in `normalizeLead.js` and `parseQualification.js` as plain JavaScript so it can be unit tested.
 `build.js` embeds those functions into the workflow JSON, so the file you import runs
 exactly the code the tests cover.
 

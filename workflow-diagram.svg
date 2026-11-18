@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#5F5E5A" stroke-width="1.8"/></marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#FAFAF7"/>
+  <text x="80" y="110" font-size="46" font-weight="bold" fill="#2C2C2A">n8n workflow: AI lead qualification</text>
+  <text x="80" y="160" font-size="26" fill="#5F5E5A">Website form lead → cleaned → scored by OpenAI → hot leads alerted on Slack → form gets a response</text>
+
+  <g font-size="24">
+    <rect x="60" y="400" width="210" height="120" rx="14" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+    <text x="165" y="452" text-anchor="middle" font-weight="bold" fill="#3C3489">Webhook</text>
+    <text x="165" y="486" text-anchor="middle" font-size="19" fill="#534AB7">POST /lead-intake</text>
+
+    <rect x="320" y="400" width="210" height="120" rx="14" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/>
+    <text x="425" y="452" text-anchor="middle" font-weight="bold" fill="#085041">Normalize lead</text>
+    <text x="425" y="486" text-anchor="middle" font-size="19" fill="#0F6E56">Code node · validate</text>
+
+    <rect x="580" y="400" width="210" height="120" rx="14" fill="#FAECE7" stroke="#993C1D" stroke-width="2"/>
+    <text x="685" y="452" text-anchor="middle" font-weight="bold" fill="#712B13">AI qualify lead</text>
+    <text x="685" y="486" text-anchor="middle" font-size="19" fill="#993C1D">OpenAI · JSON score</text>
+
+    <rect x="840" y="400" width="210" height="120" rx="14" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/>
+    <text x="945" y="452" text-anchor="middle" font-weight="bold" fill="#085041">Parse AI result</text>
+    <text x="945" y="486" text-anchor="middle" font-size="19" fill="#0F6E56">Code node · safe parse</text>
+
+    <rect x="1100" y="400" width="190" height="120" rx="14" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="2"/>
+    <text x="1195" y="452" text-anchor="middle" font-weight="bold" fill="#2C2C2A">Hot lead?</text>
+    <text x="1195" y="486" text-anchor="middle" font-size="19" fill="#5F5E5A">IF score ≥ 7</text>
+
+    <rect x="1340" y="240" width="210" height="120" rx="14" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+    <text x="1445" y="292" text-anchor="middle" font-weight="bold" fill="#3C3489">Slack alert</text>
+    <text x="1445" y="326" text-anchor="middle" font-size="19" fill="#534AB7">score + summary</text>
+
+    <rect x="1340" y="560" width="210" height="120" rx="14" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+    <text x="1445" y="612" text-anchor="middle" font-weight="bold" fill="#3C3489">Respond</text>
+    <text x="1445" y="646" text-anchor="middle" font-size="19" fill="#534AB7">JSON to the form</text>
+  </g>
+
+  <g stroke="#5F5E5A" stroke-width="2.5" fill="none">
+    <line x1="272" y1="460" x2="316" y2="460" marker-end="url(#a)"/>
+    <line x1="532" y1="460" x2="576" y2="460" marker-end="url(#a)"/>
+    <line x1="792" y1="460" x2="836" y2="460" marker-end="url(#a)"/>
+    <line x1="1052" y1="460" x2="1096" y2="460" marker-end="url(#a)"/>
+    <path d="M1290 430 L1315 430 L1315 300 L1336 300" marker-end="url(#a)"/>
+    <path d="M1290 490 L1315 490 L1315 620 L1336 620" marker-end="url(#a)"/>
+    <line x1="1445" y1="362" x2="1445" y2="556" marker-end="url(#a)"/>
+  </g>
+  <g fill="#5F5E5A">
+    <polygon points="318,460 304,452 304,468"/>
+    <polygon points="578,460 564,452 564,468"/>
+    <polygon points="838,460 824,452 824,468"/>
+    <polygon points="1098,460 1084,452 1084,468"/>
+    <polygon points="1338,300 1324,292 1324,308"/>
+    <polygon points="1338,620 1324,612 1324,628"/>
+    <polygon points="1445,558 1437,544 1453,544"/>
+  </g>
+  <text x="1322" y="230" font-size="19" fill="#3B6D11">true</text>
+  <text x="1322" y="710" font-size="19" fill="#5F5E5A">false</text>
+
+  <g font-size="22" fill="#444441">
+    <text x="80" y="800">• Retries the OpenAI call 3× and falls back to a safe "cold / review manually" result if the AI reply is malformed</text>
+    <text x="80" y="845">• Code-node logic lives in plain JS with unit tests; build.js embeds it into the importable workflow JSON</text>
+    <text x="80" y="890">• Swap Slack for email, HubSpot, or Google Sheets without touching the scoring logic</text>
+  </g>
+  <text x="80" y="955" font-size="20" fill="#888780">github.com/dollyg93/n8n-ai-lead-qualification</text>
+</svg>

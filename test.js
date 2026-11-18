@@ -1,8 +1,8 @@
 const assert = require('assert');
 const vm = require('vm');
-const workflow = require('./workflows/ai-lead-qualification.json');
-const { normalizeLead } = require('./src/normalizeLead');
-const { parseQualification } = require('./src/parseQualification');
+const workflow = require('./ai-lead-qualification.json');
+const { normalizeLead } = require('./normalizeLead');
+const { parseQualification } = require('./parseQualification');
 
 const lead = normalizeLead({ name: ' Priya ', email: 'Priya@Acme.io ', message: 'Need our Shopify orders synced to Sheets', budget: '$500' });
 assert.strictEqual(lead.email, 'priya@acme.io');
